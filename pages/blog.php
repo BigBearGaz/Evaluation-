@@ -105,7 +105,7 @@
                 </div>
             </div>
             <div class="col-md-4">
-                <img src="<?= $post->image ?>" class="img-fluid post-image" alt="<?= $post->title ?>">
+                <img src="./admin/<?= $post->image ?>" class="img-fluid post-image" alt="<?= $post->title ?>">
                 <br/><br/>
                 <a class="btn btn-read-more" href="index.php?page=post&id=<?= $post->id ?>">Lire l'article complet</a>
             </div>
