@@ -68,19 +68,20 @@ function edit_vrmtposts($id, $newtitle, $newcontent, $newimage, $newposted) {
 
     return $stmt->rowCount();
 }
-function add_post($title, $content, $image, $writer, $posted = 1) {
+function add_post($title, $content, $image, $writer, $categorie_id, $posted = 1) {
     global $db;
 
     try {
         $stmt = $db->prepare("
-            INSERT INTO posts (title, content, image, writer, posted, date)
-            VALUES (:title, :content, :image, :writer, :posted, NOW())
+            INSERT INTO posts (title, content, image, writer, categorie_id, posted, date)
+            VALUES (:title, :content, :image, :writer, :categorie_id, :posted, NOW())
         ");
 
         $stmt->bindParam(':title', $title, PDO::PARAM_STR);
         $stmt->bindParam(':content', $content, PDO::PARAM_STR);
         $stmt->bindParam(':image', $image, PDO::PARAM_STR);
         $stmt->bindParam(':writer', $writer, PDO::PARAM_STR);
+        $stmt->bindParam(':categorie_id', $categorie_id, PDO::PARAM_INT);
         $stmt->bindParam(':posted', $posted, PDO::PARAM_INT);
 
         $stmt->execute();

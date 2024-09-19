@@ -154,6 +154,9 @@
           <li class="nav-item">
             <a class="nav-link" href="admin">Connexion</a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link" href="index.php?page=categorie">Categorie</a>
+          </li>
         </ul>
       </div>
     </div>

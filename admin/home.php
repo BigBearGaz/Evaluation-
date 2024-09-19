@@ -1,4 +1,4 @@
-<style>
+<?php session_start() ?><style>
     body {
         background: linear-gradient(45deg, #1a0000, #330000);
         color: #fff;
@@ -129,39 +129,47 @@
     <?php 
     require_once('functions.php');
     ?>
-    <h1 class="mb-4">Page d'accueil</h1>
-    <div class="row">
-        <div class="col-12 mb-4">
-            <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#addPostModal">
-                Ajouter un nouveau post
-            </button>
-        </div>
-
         <!-- Modal pour ajouter un nouveau post -->
-        <div class="modal fade" id="addPostModal" tabindex="-1" aria-labelledby="addPostModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="addPostModalLabel">Ajouter un nouveau post</h5>
-                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+<!-- Bouton pour ouvrir la modal -->
+<button type="button " class="btn mb-5" data-bs-toggle="modal" data-bs-target="#addPostModal">
+    Ajouter un nouveau post
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="addPostModal" tabindex="-1" aria-labelledby="addPostModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title" id="addPostModalLabel">Ajouter un nouveau post</h2>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form action="add_post.php" method="POST" enctype="multipart/form-data">
+                    <div class="mb-3">
+                        <input type="text" name="title" placeholder="Titre" required class="form-control">
                     </div>
-                    <form action="add_post.php" method="POST">
-                        <div class="modal-body">
-                            <input type="text" name="title" placeholder="Titre" class="form-control mb-3" required>
-                            <textarea name="content" placeholder="Contenu" class="form-control mb-3" required></textarea>
-                            <input type="text" name="image" placeholder="URL de l'image" class="form-control mb-3">
-                            <input type="text" name="writer" placeholder="Auteur" class="form-control mb-3" required>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="file" name="file" class="btn">Add image</button>
-                            <button type="button" class="btn" data-bs-dismiss="modal">Fermer</button>
-                            <button type="submit" class="btn">Ajouter le post</button>
-                        </div>
-                    </form>
-                </div>
+                    <div class="mb-3">
+                        <textarea name="content" placeholder="Contenu" required class="form-control"></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <input type="text" name="writer" placeholder="Auteur" required class="form-control">
+                    </div>
+                    <div class="mb-3">
+                        <select name="categorie_id" required class="form-control">
+                            <option value="">--Choisissez une catégorie--</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <input type="file" name="image" accept="image/*" class="form-control">
+                    </div>
+                    <button type="submit" class="btn">Ajouter le post</button>
+                </form>
             </div>
         </div>
-
+    </div>
+</div>
         <div class="post-grid">
             <?php
             $posts = get_posts();
@@ -226,5 +234,26 @@
                 </div>
             <?php endforeach; ?>
         </div>
+    </div>
+</div>
+
+<div class="container">
+    <?php 
+    require_once('functions.php');
+    ?>
+    <!-- Bouton pour rediriger vers localhost/gaz/home -->
+    <a href="http://localhost/gaz/" class="btn mb-3">Retour à l'accueil</a>
+
+    
+    <div class="modal fade" id="addPostModal" tabindex="-1" aria-labelledby="addPostModalLabel" aria-hidden="true">
+        <!-- ... (le contenu de la modal reste inchangé) ... -->
+    </div>
+
+    <div class="post-grid">
+        <?php
+        $posts = get_posts();
+        foreach($posts as $post): ?>
+            <!-- ... (le contenu de la boucle foreach reste inchangé) ... -->
+        <?php endforeach; ?>
     </div>
 </div>

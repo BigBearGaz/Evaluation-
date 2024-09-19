@@ -125,7 +125,7 @@
         foreach($posts as $post) {
         ?>
         <article class="post-card">
-            <img src="<?= $post->image ?>" class="post-image" alt="<?= $post->title ?>">
+            <img src="./admin/<?= $post->image ?>" class="post-image" alt="<?= $post->title ?>">
             <div class="post-content">
                 <h2 class="post-title"><?= $post->title ?></h2>
                 <div class="post-meta">
